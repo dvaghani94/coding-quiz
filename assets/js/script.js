@@ -1,82 +1,92 @@
-var quizButton = document.getElementById('.buttons-group');
+var quizQuestions = document.querySelector(".question");
+var questionNumbers = document.querySelector(".number");
+var questionOptions = document.querySelector(".buttons-group");
 
+var questions = 0;
+var currentQuestion;
+var questionsLeft = []
 
 var codingQuestion = [ {
     questions: "which letter is correctly matched?",
-    answers: {
+    options: {
         a: "e",
         b: "f",
         c: "g",
         d: "d",
     },
-    correctAnswer: "d"
+    answer: "d"
 },
 {
     question: "which letter is correctly matched?",
-    answers: {
+    options: {
         a: "f",
         b: "g",
         c: "c",
         d: "h",
     },
-    correctAnswer: "c"
+    answers: "c"
 },
 {
     question: "which letter is correctly matched?",
-    answers: {
+    options: {
         a: "f",
         b: "g",
         c: "c",
         d: "h",
     },
-    correctAnswer: "c"
+    answers: "c"
 },
 {
     question: "which letter is correctly matched?",
-    answers: {
+    options: {
         a: "f",
         b: "g",
         c: "c",
         d: "h",
     },
-    correctAnswer: "c"
+    answers: "c"
 },
 {
-    question: "which letter is correctly matched?",
-    answers: {
+    question: "which letter is correctly matched?", 
+    options: {
         a: "f",
         b: "g",
         c: "c",
         d: "h",
     },
-    correctAnswer: "c"
+    answers: "c"
 }
 ];
 
-function questions(count) {
-    var quizQuestions = document.getElementById('questions');
+console.log(codingQuestion)
 
-    quizQuestions.value = "<h2>$(quizQuestions(count).codingQuestions)</h2>"
+var questionPool = 0;
+var currentQuestion;
+var questionsLeft = [];
+var optionsLeft = [];
 
+function setQuestionsLeft() {
+    var totalQuestion = codingQuestion.length;
+    for(var i = 0; i < totalQuestion; i++) {
+        questionsLeft.push(codingQuestion[i])
+    }
+}
 
+function nextQuestion() {
+    var randomQuestion = questionsLeft[Math.floor(Math.random() * questionsLeft.length)];
+    console.log(randomQuestion)
 
-function results() {
-    var trackResults = quizQuestions.querySelectorAll('.answers');
+    var optionChoice = currentQuestion.questionOptions.length
+    for(var i = 0; i < optionChoice; i++) {
+        optionsLeft.push(i)
+    }
 
-    var numCorrect = 0;
-
-    codingQuestion.forEach((currentQuestion, questionNumber))
-    var endResult = trackResults[questionNumber];
-    var totalSelected = 'input[name=questions $(questionNumber)] : checked';
-    var endScore = (trackResults.querySelector(totalSelected) || [] ).value;
-
-    if(endScore === currentQuestion.correctAnswer) {
-        numCorrect++;
-
-        trackResults[questionNumber].getElementsByClassName.color = 'violet';
+    questionPool++
+}
+function quizEnd() {
+    if(questionPool === codingQuestion.length) {
     }
     else {
-        trackResults[questionNumber].getElementsByClassName.color = 'grey';
+        nextQuestion();
     }
-
-    scoreResults.value = '$([numCorrect]) out of $[codingQuestion.length])';
+}

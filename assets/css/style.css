@@ -1,5 +1,14 @@
 body {
+    margin: 0;
+    font-size: 20px;
     background-color: aliceblue;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -7,27 +16,28 @@ body {
     width: 800px;
     height: 660px;
     background-color: rgb(177, 238, 238);
-    float: center;
-    border-radius: 30px;
-    box-shadow: lightseagreen;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 10px;
+    border-radius: 20px;
+    margin: 80px auto;
 }
 
-#headings {
-    font-size: 40px;
+.box h1{
+    display: inline;
+    font-size: 30px;
     text-align: center;
     color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }
 
-#rules {
+.box p {
     font-size: 15px;
     text-align: center;
     color: black;
+    margin: auto;
 }
 
-.questions {
+.question .number {
     font-size: 25px;
     color: rgb(5, 21, 235);
 }
