@@ -1,0 +1,54 @@
+body {
+    background-color: aliceblue;
+}
+
+.container {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    background-color: rgb(177, 238, 238);
+    float: center;
+    border-radius: 30px;
+    box-shadow: lightseagreen;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px;
+}
+
+#headings {
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+#rules {
+    font-size: 15px;
+    text-align: center;
+    color: black;
+}
+
+.questions {
+    font-size: 25px;
+    color: gray;
+}
+
+.buttons {
+    list-style-type: none;
+    margin-top: 280px;
+}
+
+#btn1, #btn2, #btn3, #btn4 {
+    font-size: 25px;
+    background-color: rgb(17, 143, 122);
+    width: 100px;
+    height: 50px
+    border: 1px black;
+    border-radius: 30px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    list-style-type: none;
+}
+
+hr {
+    width: 800px;
+}

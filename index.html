@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,21 +8,24 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
-<body>
+  <body>
     <div class="container">
-      <h1>Coding Quiz Challenge</h1>
-        <div class="quiz">
-            <p>Answer the following questions related to coding within the time limit. Incorrect answers will decrease the time by ten seconds!</p>
-            <button class="start">
-                Start
-            </button>
-            <div class="score"></div>
-        </div>
+      <h1 id="headings"></h1>
+      <p id="rules"></p>
+      <div class="questions">
+        <ul class="buttons">
+          <li id="btn0"></li>
+          <li id="btn1"></li>
+          <li id="btn2"></li>
+          <li id="btn3"></li>
+          <li id="btn4"></li>
+        </ul>
+        <hr>
+      </div>
     </div>
-    <label>
-        <input type="radio" name="questions${questionNumber}" value="${letter}">
-    </label>
     <script src="./assets/js/script.js"></script>
-</body>
-
+  </body>
+  <footer>
+    <h2 class="status"></h2>
+  </footer>
 </html>

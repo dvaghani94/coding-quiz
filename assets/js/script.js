@@ -1,6 +1,6 @@
 var quizQuestions = document.getElementById('.quiz');
 var scoreResults = document.getElementById('.score');
-var startButton = document.getElementById('.start');
+var quizButton = document.getElementById('.start');
 
 
 var codingQuestion = [ {
@@ -12,6 +12,26 @@ var codingQuestion = [ {
         d: "d",
     },
     correctAnswer: "d"
+},
+{
+    question: "which letter is correctly matched?",
+    answers: {
+        a: "f",
+        b: "g",
+        c: "c",
+        d: "h",
+    },
+    correctAnswer: "c"
+},
+{
+    question: "which letter is correctly matched?",
+    answers: {
+        a: "f",
+        b: "g",
+        c: "c",
+        d: "h",
+    },
+    correctAnswer: "c"
 },
 {
     question: "which letter is correctly matched?",
@@ -76,4 +96,4 @@ function results() {
 };
 
 
-startButton.addEventListener('click', results);
+quizButton.addEventListener('click', results);
