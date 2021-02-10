@@ -1,6 +1,4 @@
-var quizQuestions = document.getElementById('.quiz');
-var scoreResults = document.getElementById('.score');
-var quizButton = document.getElementById('.start');
+var quizButton = document.getElementById('.buttons-group');
 
 
 var codingQuestion = [ {
@@ -55,21 +53,10 @@ var codingQuestion = [ {
 }
 ];
 
-function questions() {
-    var output = [];
-    codingQuestion.forEach((currentQuestion, questionNumber))
-        var userAnswer = [];
-        for(letter in currentQuestion.answers) {
-            answers.push((letter, currentQuestion.answer[letter])
-            )
-        };
-    userAnswer.push((currentQuestion, answers.join(''))
-    )
-    };
+function questions(count) {
+    var quizQuestions = document.getElementById('questions');
 
-  quizQuestions.value = userAnswer.join('')
-
-  codingQuestion.forEach((currentQuestion))
+    quizQuestions.value = "<h2>$(quizQuestions(count).codingQuestions)</h2>"
 
 
 
@@ -93,7 +80,3 @@ function results() {
     }
 
     scoreResults.value = '$([numCorrect]) out of $[codingQuestion.length])';
-};
-
-
-quizButton.addEventListener('click', results);

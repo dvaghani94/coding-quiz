@@ -5,7 +5,7 @@ body {
 .container {
     display: flex;
     width: 800px;
-    height: 600px;
+    height: 660px;
     background-color: rgb(177, 238, 238);
     float: center;
     border-radius: 30px;
@@ -29,24 +29,26 @@ body {
 
 .questions {
     font-size: 25px;
-    color: gray;
+    color: rgb(5, 21, 235);
 }
 
-.buttons {
+.buttons-group {
     list-style-type: none;
     margin-top: 280px;
 }
 
-#btn1, #btn2, #btn3, #btn4 {
-    font-size: 25px;
+.buttons {
     background-color: rgb(17, 143, 122);
-    width: 100px;
-    height: 50px
-    border: 1px black;
-    border-radius: 30px;
-    padding: 10px 10px;
+    width: 150px;
+    border-radius: 100px;
+    padding: 15px 20px;
     margin-bottom: 20px;
-    list-style-type: none;
+}
+
+.buttons:hover {
+    cursor: pointer;
+    border: 1px rgb(33, 7, 150);
+    color:skyblue;
 }
 
 hr {
