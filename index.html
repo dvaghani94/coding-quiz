@@ -17,22 +17,34 @@
      
     <div class="quiz-section">
       <div class="timer"><span class="time-count">00:00</span></div>
-        <h2 class="number">
-        <p class="question-text"></p>
+        <h2 class="question-text"></h2>
           <ul class="buttons-group">
-            <li class="buttons"></li>
-            <li class="buttons"></li>
-            <li class="buttons"></li>
-            <li class="buttons"></li>
+            <li class="buttons" onclick="selected()"></li>
+            <li class="buttons" onclick="selected()"></li>
+            <li class="buttons" onclick="selected()"></li>
+            <li class="buttons" onclick="selected()"></li>
          </ul> 
-         <button class="btn-next" onclick="next()">Next</button>
-        </h2>  
+         <button class="btn-next" onclick="nextQuestion()">Next</button> 
         <hr>
       <div class="answers"></div>
     </div>  
+
+    <div class="end-quiz">
+      <h3 class="user-input"></h3>
+        <form class="user-name">
+          <input type="text">Name</input>
+          <button class="btn-end" onclick="showResults()">End Quiz</button>
+        </form>
+    </div>
+
+    <div class="show-results">
+      <h4 class="quiz-score"></h4>
+        <ul class="score-board">
+          <li class="high-score">Highest Score</li>
+          <li class="low-score">Lowest Score</li>
+        </ul>
+    </div>
+
     <script src="./assets/js/script.js"></script>
   </body>
-  <footer>
-    <h2 class="status"></h2>
-  </footer>
 </html>
