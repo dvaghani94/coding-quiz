@@ -1,13 +1,21 @@
-var quizQuestions = document.querySelector(".question");
-var questionNumbers = document.querySelector(".number");
-var questionOptions = document.querySelector(".buttons-group");
-
-var questions = 0;
-var currentQuestion;
-var questionsLeft = []
+function start() {
+    var h1 = document.querySelector(".container");
+    var h2 = document.querySelector(".quiz-section");
+    if (h1) {
+    if (h1.style.display === "none") {
+        h1.style.display = "block";
+        h2.style.display = "none";
+    }
+    else {
+        h1.style.display = "none";
+        h2.style.display = "block";
+    }
+  }
+}
 
 var codingQuestion = [ {
-    questions: "which letter is correctly matched?",
+    id: 1,
+    question: "which letter is correctly matched?",
     options: {
         a: "e",
         b: "f",
@@ -17,6 +25,7 @@ var codingQuestion = [ {
     answer: "d"
 },
 {
+    id: 2,
     question: "which letter is correctly matched?",
     options: {
         a: "f",
@@ -27,6 +36,7 @@ var codingQuestion = [ {
     answers: "c"
 },
 {
+    id: 3,
     question: "which letter is correctly matched?",
     options: {
         a: "f",
@@ -37,6 +47,7 @@ var codingQuestion = [ {
     answers: "c"
 },
 {
+    id: 4,
     question: "which letter is correctly matched?",
     options: {
         a: "f",
@@ -47,6 +58,7 @@ var codingQuestion = [ {
     answers: "c"
 },
 {
+    id: 5,
     question: "which letter is correctly matched?", 
     options: {
         a: "f",
@@ -61,32 +73,25 @@ var codingQuestion = [ {
 console.log(codingQuestion)
 
 var questionPool = 0;
-var currentQuestion;
 var questionsLeft = [];
-var optionsLeft = [];
 
-function setQuestionsLeft() {
-    var totalQuestion = codingQuestion.length;
-    for(var i = 0; i < totalQuestion; i++) {
-        questionsLeft.push(codingQuestion[i])
-    }
+window.onload = function() {
+    show(0);
 }
 
-function nextQuestion() {
-    var randomQuestion = questionsLeft[Math.floor(Math.random() * questionsLeft.length)];
-    console.log(randomQuestion)
+function show(index) {
+    var quizQuestions = document.querySelector(".question-text");
+    var quizOptions = document.querySelector(".buttons-group");
 
-    var optionChoice = currentQuestion.questionOptions.length
-    for(var i = 0; i < optionChoice; i++) {
-        optionsLeft.push(i)
-    }
-
-    questionPool++
+    var currentQuestion = '<h2>' + codingQuestion[index].question + '</h2>';
+    optionsLeft();
 }
-function quizEnd() {
-    if(questionPool === codingQuestion.length) {
-    }
-    else {
-        nextQuestion();
-    }
+
+function optionsLeft() {
+    for(var i = 0; i < quizOptions; i++);
+}
+
+function getNextQuestion() {
+    questionPool++;
+    show(questionPool);
 }

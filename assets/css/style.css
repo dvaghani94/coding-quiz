@@ -21,7 +21,7 @@ p {
     margin: auto;
 }
 
-.btn {
+#btn {
     font-size: 15px;
     width: 100px;
     height: 30px;
@@ -38,6 +38,7 @@ p {
 
 
 .quiz-section {
+    display: none;
     text-align: 200px;
 }
 
@@ -70,6 +71,20 @@ ul li {
     cursor: pointer;
     border: 4px solid skyblue;
 }
+
+.btn-next {
+    background-color: blue;
+    width: 75px;
+    height: 10px;
+    border-radius: 100px;
+    border: 2px solid transparent;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.btn-next:hover {
+    cursor: pointer;
+    border: 4px solid skyblue;
 
 hr {
     width: 800px;

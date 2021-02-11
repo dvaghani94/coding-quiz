@@ -9,15 +9,16 @@
   </head>
 
   <body>
-    <div class="container box">
-      <h1>Coding Quiz Challenge!</h1>
-      <div class="timer"><span class="time-count">00:00</span></div> 
-      <p>Try to answer the folloswing code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds! <span class="question"></span></p>
-      <button type="button" class="btn">Start</button>
+    <div class="container">
+      <h1>Coding Quiz Challenge!</h1> 
+      <p>Try to answer the folloswing code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</p>
+      <button type="button" id="btn" onclick="start()">Start</button>
       </div>
      
-    <div class="quiz-section box">
-      <h2 class="number">
+    <div class="quiz-section">
+      <div class="timer"><span class="time-count">00:00</span></div>
+      <div class="number">
+        <h2>NUMBERS</h2>
         <p class="question-text"></p>
           <ul class="buttons-group">
             <li class="buttons"></li>
@@ -25,7 +26,8 @@
             <li class="buttons"></li>
             <li class="buttons"></li>
          </ul> 
-      </h2>
+         <button class="btn-next">Next</button>
+      </div>  
         <hr>
       <div class="answers"></div>
     </div>  
