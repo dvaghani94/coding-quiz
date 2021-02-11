@@ -73,25 +73,28 @@ var codingQuestion = [ {
 console.log(codingQuestion)
 
 var questionPool = 0;
-var questionsLeft = [];
 
 window.onload = function() {
     show(0);
 }
 
 function show(index) {
-    var quizQuestions = document.querySelector(".question-text");
-    var quizOptions = document.querySelector(".buttons-group");
+    var quizQuestions = document.querySelector(".question-text")
 
-    var currentQuestion = '<h2>' + codingQuestion[index].question + '</h2>';
-    optionsLeft();
+    quizQuestions.innerHTML = '<h2>' + codingQuestion[index].question + '</h2>';
+     '<ul class="buttons-group">'
+     '<li class="buttons">' + codingQuestion[index].options[0] + '</li>'
+     '<li class="buttons">' + codingQuestion[index].options[1] + '</li>'
+     '<li class="buttons">' + codingQuestion[index].options[2] + '</li>'
+     '<li class="buttons">' + codingQuestion[index].options[3] + '</li>'
+    '</ul>';
 }
 
-function optionsLeft() {
-    for(var i = 0; i < quizOptions; i++);
-}
-
-function getNextQuestion() {
+function questionPool() {
     questionPool++;
-    show(questionPool);
+    console.log(questionPool);
+}
+    
+window.onload = function() {
+    show(0);
 }
