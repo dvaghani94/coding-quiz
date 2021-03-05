@@ -1,3 +1,6 @@
+var currentLocation = 0; 
+var theChoices = document.getElementById("available");
+
 function start() {
     var h1 = document.querySelector(".container");
     var h2 = document.querySelector(".quiz-section");
@@ -13,10 +16,12 @@ function start() {
     else {
         h1.style.display = "none";
         h2.style.display = "block";
-        h3.style.display = "block";
+        h3.style.display = "none";
     }
   }
-  countDown(time)
+//   countDown(time);
+  grabbing();
+  
 }
 
 var codingQuestion = [ {
@@ -27,7 +32,7 @@ var codingQuestion = [ {
         "cresending style sheet",
         "cresting style sheet",
     ],
-    answer: "cascading style sheet"
+    answers: "cascading style sheet"
 },
 {
     question: "Which tag is commonly used first in an html?",
@@ -40,7 +45,7 @@ var codingQuestion = [ {
     answers: "html"
 },
 {
-    question: "what is the cloding tag for <h2>",
+    question: "what is the closing tag for <h2>",
     options: [
         "<h2>",
         "</h2>",
@@ -76,12 +81,13 @@ console.log(codingQuestion)
 var questionPool = 0;
 var answerPool = 1;
 
-window.onload = function() {
-    show(0);
-}
+// window.onload = function() {
+//     show(0);
+// }
 
 function nextQuestion() {
     questionPool++;
+    
     console.log(questionPool);
 
     countDown(time)
@@ -101,49 +107,43 @@ function selected(answer) {
     }
 }
 
-function show(index) {
-    var quizQuestions = document.querySelector(".question-text")
-    var questionChoice = document.querySelector(".buttons-group")
+// function show(index) {
+//     var quizQuestions = document.querySelector(".question-text")
+//     var questionChoice = document.querySelector(".buttons-group")
 
-    quizChoices = '<h2>' + codingQuestion[index].question + '</h2>';
+//     quizChoices = '<h2>' + codingQuestion[index].question + '</h2>';
 
-    var quizOptions = 
-     '<ul class="buttons">' + codingQuestion[index].options[0] + '<li></li></ul>' +
-     '<ul class="buttons">' + codingQuestion[index].options[1] + '<li></li></ul>' +
-     '<ul class="buttons">' + codingQuestion[index].options[2] + '<li></li></ul>' +
-     '<ul class="buttons">' + codingQuestion[index].options[3] + '<li></li></ul>' ;
+//     var quizOptions = 
+//      '<ul class="buttons">' + codingQuestion[index].options[0] + '<li></li></ul>' +
+//      '<ul class="buttons">' + codingQuestion[index].options[1] + '<li></li></ul>' +
+//      '<ul class="buttons">' + codingQuestion[index].options[2] + '<li></li></ul>' +
+//      '<ul class="buttons">' + codingQuestion[index].options[3] + '<li></li></ul>' ;
 
-     quizQuestions.innerHTML = quizOptions;
-     questionChoice.innerHTML = quizChoices; 
+//      quizQuestions.innerHTML = quizOptions;
+//      questionChoice.innerHTML = quizChoices; 
 
-     var userChoice = questionChoice.querySelectorAll(".buttons");
-     for(let i = 0; i < questionChoice.length; i++) {
-         questionChoice[i].setAttribute("onclick", "selected(this)")
-     }
+//      var userChoice = questionChoice.querySelectorAll(".buttons");
+//      for(let i = 0; i < questionChoice.length; i++) {
+//          questionChoice[i].setAttribute("onclick", "selected(this)")
+//      }
 
-}
+// }
 
 var time = document.querySelector(".timer");
 var timeCount;
-var timeLimit = 30;
+var timeLimit = codingQuestion.length * 15;
 
 // need to have time start when start btn clicked
-function countDown(time) {
-    timeCount = setInterval(timer, 1000);
-    function timer() {
-        timeCount.textContent = time;
-        time--;
-        if(time < 9) {
-            var inputZero = timeCount.textContent;
-            timeCount.textContent = "0" + inputZero;
-        }
-        if(time < 0) {
-            clearInterval();
-            timeCount.textContent = "00";
-        }
-    }
+function countDown() {
+    if (timeLimit == 0) {
+        document.getElementById('btn').innerHTML
+        }  
+        else {
+            document.getElementById('btn').innerHTML = timelimit;
+            timeLimit = timeLimit -1;
+            setTimeout(countDown,1000);
+            }
 }
-
 // need to change function to show name input option
 function showResults() {
     var h3 = document.querySelector(".end-quiz");
@@ -160,5 +160,85 @@ function showResults() {
   }
 }
 
-// function/button for score board + store data/answers
- 
+
+
+//grabbing the question (which will also lead to getting the next question )
+function grabbing () {
+    var questionAtTime = codingQuestion[currentLocation];
+
+    //render the current question at that time title
+    var questionTitle = document.getElementById("title")
+    questionTitle.textContent = questionAtTime.question
+
+    // double check to make sure there is not a question currently in the area
+    theChoices.innerHTML = "";
+
+    // loop through the choices in each questin (when rendered) and dispaly on the page
+    questionAtTime.options.forEach(function(option, i)
+    {
+        var radioButtons = document.createElement("button");
+        radioButtons.setAttribute("class", "option");
+        radioButtons.setAttribute("value", option)
+
+        // functinality to your radiobuttons
+        radioButtons.textContent= i + 1 + " ." + option;
+        // 1. Option1 
+        // 2. Option2
+
+        // attach event
+        radioButtons.onclick = clickButton;
+
+
+        // display ME
+        theChoices.appendChild(radioButtons)
+    })
+}
+
+
+// clicking the questions method will tell the code what to do after the user has clicked an answer 
+function clickButton () {
+    // comparing and contrasting the selected answer withthe coded answer 
+    if (this.value !== codingQuestion[currentLocation].answers){
+            // take away 
+        timeLimit -= 15;
+        if(timeLimit < 0 ){
+            timeLimit = 0
+        }
+            // display new time
+var timerTime = document.getElementById("timer")
+;
+timerTime.textContent = timeLimit;
+            // go to next questin 
+            currentLocation ++;
+
+           
+    }
+     // assure there are questions remaining if not end the game
+     if( currentLocation === codingQuestion.length){
+        // end game
+        endGame();
+    }else {
+        grabbing();
+    }
+}
+
+// quiz end will execute different reason for ending the game
+function endGame () {
+    // clearTimer to equal 0 
+
+    var finalPage = document.getElementById("end-quiz");
+    finalPage.removeAttribute("class");
+
+    // showcase the final score!!! 
+    var finalScore = document.getElementById("final_score");
+    finalScore.textContent = timeCount;
+
+
+    // hide your questions from the rest of the page 
+    var page = document.getElementById("quiz-section");
+    page.setAttribute("class", "quiz-section")
+}
+
+// // function/button for score board + store data/answers
+//  var starbtn = document.getElementById("btn");
+//  startbtn.onclick = grabbing;

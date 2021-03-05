@@ -15,23 +15,21 @@
       <button type="button" id="btn" onclick="start()">Start</button>
       </div>
      
-    <div class="quiz-section">
-      <div class="timer"><span class="time-count">00:00</span></div>
-        <h2 class="question-text"></h2>
-          <ul class="buttons-group">
-            <li class="buttons" onclick="selected()"></li>
-            <li class="buttons" onclick="selected()"></li>
-            <li class="buttons" onclick="selected()"></li>
-            <li class="buttons" onclick="selected()"></li>
-         </ul> 
-         <button class="btn-next" onclick="nextQuestion()">Next</button> 
+    <div class="quiz-section" id="quiz-section">
+      <div class="timer" id="timer"></div>
+        <h2 class="question-text" id="title"></h2>
+        <div  class="available" id="available" >
+          
+        </div>
+          
         <hr>
       <div class="answers"></div>
     </div>  
 
-    <div class="end-quiz">
+    <div class="end-quiz" id="end-quiz">
       <h3 class="user-input"></h3>
         <form class="user-name">
+          <p>Final Score <span id="final_score"></span></p>
           <input type="text">Name</input>
           <button class="btn-end" onclick="showResults()">End Quiz</button>
         </form>

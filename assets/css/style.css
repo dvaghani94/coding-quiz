@@ -36,7 +36,9 @@ p {
     border: 3px solid skyblue;
 }
 
-
+.end-quiz {
+    display: none;
+}
 .quiz-section {
     display: none;
     text-align: 200px;
