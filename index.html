@@ -12,21 +12,20 @@
     <div class="container">
       <h1>Coding Quiz Challenge!</h1> 
       <p>Try to answer the folloswing code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</p>
-      <button type="button" id="btn" onclick="start()">Start</button>
+      <button type="button" class="btn-start" id="start">Start</button>
       </div>
      
-    <div class="quiz-section" id="quiz-section">
-      <div class="timer" id="timer"></div>
-        <h2 class="question-text" id="title"></h2>
-        <div  class="available" id="available" >
-          
-        </div>
-          
-        <hr>
-      <div class="answers"></div>
-    </div>  
-
-    <div class="end-quiz" id="end-quiz">
+      <div class="hide" id="quiz-section">
+        <h2 id="question-text"></h2>
+          <div id="buttons-group">
+            <option class="btn"></option>
+            <option class="btn"></option>
+            <option class="btn"></option>
+            <option class="btn"></option>
+          </div> 
+         <button type="button" class="btn-next" id="next">Next</button>  
+          </div>
+    <!-- <div class="end-quiz" id="end-quiz">
       <h3 class="user-input"></h3>
         <form class="user-name">
           <p>Final Score <span id="final_score"></span></p>
@@ -41,7 +40,7 @@
           <li class="high-score">Highest Score</li>
           <li class="low-score">Lowest Score</li>
         </ul>
-    </div>
+    </div> -->
 
     <script src="./assets/js/script.js"></script>
   </body>

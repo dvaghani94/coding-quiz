@@ -1,133 +1,143 @@
-var currentLocation = 0; 
-var theChoices = document.getElementById("available");
+var startBtn = document.querySelector(".btn-start");
+var quiz = document.querySelector("#quiz-section");
+var quizStarter = document.querySelector(".container");
 
-function start() {
-    var h1 = document.querySelector(".container");
-    var h2 = document.querySelector(".quiz-section");
-
-    //need to block this section until quiz end 
-    var h3 = document.querySelector(".end-quiz");
-    if (h1) {
-    if (h1.style.display === "none") {
-        h1.style.display = "block";
-        h2.style.display = "none";
-        h3.style.display = "none";
-    }
-    else {
-        h1.style.display = "none";
-        h2.style.display = "block";
-        h3.style.display = "none";
-    }
-  }
-//   countDown(time);
-  grabbing();
+// //   countDown(time);
+//   grabbing();
   
-}
 
 var codingQuestion = [ {
     question: "which does css stand for?",
     options: [
-        "casacading style sheet",
-        "cascading sheet style",
-        "cresending style sheet",
-        "cresting style sheet",
+        {option: "casacading style sheet", answer: true},
+        {option: "cascading sheet style", answer: false},
+        {option: "cresending style sheet", answer: false},
+        {option: "cresting style sheet", answer: false},
     ],
-    answers: "cascading style sheet"
 },
 {
     question: "Which tag is commonly used first in an html?",
     options: [
-        "footer",
-        "header",
-        "body",
-        "html",
+        {option: "footer", answer: false},
+        {option: "header", answer: false},
+        {option: "body", answer: false},
+        {option: "html", answer: true},
     ],
-    answers: "html"
 },
 {
     question: "what is the closing tag for <h2>",
     options: [
-        "<h2>",
-        "</h2>",
-        "<h1>",
-        "</h1>",
+        {option: "<h2>", answer: false},
+        {option: "</h2>", answer: true},
+        {option: "<h1>", answer: false},
+        {option: "</h1>", answer: false},
     ],
-    answers: "</h2>"
 },
 {
     question: "What does js stand for?",
     options: [
-        "javascore",
-        "javaships",
-        "javascript",
-        "javasyrup",
+        {option: "javascore", answer: false},
+        {option: "javaships", answer: false},
+        {option: "javascript", answer: true},
+        {option: "javasyrup", answer: false},
     ],
-    answers: "javascript"
 },
 {
     question: "How do you attach an img in html?", 
     options: [
-        "<img src=",
-        "<img",
-        "<img tag",
-        "<src img",
+        {option: "<img src=", answer: true},
+        {option: "<img", answer: false},
+        {option: "<img tag", answer: false},
+        {option: "<src img", answer: false},
     ],
-    answers: "<img src="
 }
 ];
 
-console.log(codingQuestion)
 
-var questionPool = 0;
-var answerPool = 1;
 
-// window.onload = function() {
-//     show(0);
-// }
+startBtn.addEventListener("click", startQuiz);
 
-function nextQuestion() {
-    questionPool++;
-    
-    console.log(questionPool);
+var quizQuestions = document.querySelector("#question-text");
+var answerChoice = document.querySelector("#buttons-group");
 
-    countDown(time)
+
+function startQuiz() {
+    console.log(startBtn);
+   startBtn.classList.add("hide");
+   quizStarter.classList.add("hide");
+   randomQuestions = codingQuestion.sort()
+   currentQuestion = 0;
+   quiz.classList.remove("hide");
+   setNext()
 }
-// need to check if answer gets selected
-function selected(answer) {
-    var userChoice = answer.textContent;
-    console.log(userAnswer)
-    var correctAnswer = codingQuestion[answerPool].answer;
-    if(userChoice == correctAnswer) {
-        answer.classList.add("correct");
-        console.log('Correct Answer');
+
+var nextBtn = document.querySelector(".btn-next")
+nextBtn.addEventListener("click", () => {
+    currentQuestion++
+    setNext();
+    // grabbing();
+})
+
+function setNext() {
+    questionList(randomQuestions[currentQuestion]);
+}
+
+function questionList(question) {
+    //if (currentQuestion >= quizQuestions.length) {
+      //  showScore()
+    //}
+
+    quizQuestions.innerText = question.question;
+
+    answerChoice.innerHTML = "";
+
+    question.options.forEach(option => {
+
+        console.log(option.option);
+        console.log(option.answer);
+
+        var optionBtn = document.createElement("button");
+        optionBtn.innerText = option.option;
+        optionBtn.classList.add("btn");
+        if (option.answer) {
+            optionBtn.dataset.answer = option.answer;
+        }
+        optionBtn.addEventListener("click", checkAnswer);
+        answerChoice.appendChild(optionBtn)
+
+    })
+}
+
+function checkAnswer(e) {
+    var userChoice = e.target
+    var correctAnswer = userChoice.dataset.answer;
+    setCorrectAnswer(document.body, correctAnswer);
+    Array.from(answerChoice.children).forEach(button => {
+        setCorrectAnswer(button, button.dataset.answer)
+    })
+    if(randomQuestions.length > currentQuestion + 1) {
+        nextBtn.classList.remove("hide");
+    } 
+    else {
+        startBtn.innerText = "Restart";
+        startBtn.classList.remove("hide")
+    }
+}
+
+function setCorrectAnswer(element, correctAnswer) {
+    clearChoice(element);
+    if (correctAnswer) {
+        element.classList.add("true");
     }
     else {
-        answer.classList.add("incorrect");
-        console.log('Incorrect Answer');
+        element.classList.add("false");
     }
 }
 
-// function show(index) {
-//     var quizQuestions = document.querySelector(".question-text")
-//     var questionChoice = document.querySelector(".buttons-group")
-
-//     quizChoices = '<h2>' + codingQuestion[index].question + '</h2>';
-
-//     var quizOptions = 
-//      '<ul class="buttons">' + codingQuestion[index].options[0] + '<li></li></ul>' +
-//      '<ul class="buttons">' + codingQuestion[index].options[1] + '<li></li></ul>' +
-//      '<ul class="buttons">' + codingQuestion[index].options[2] + '<li></li></ul>' +
-//      '<ul class="buttons">' + codingQuestion[index].options[3] + '<li></li></ul>' ;
-
-//      quizQuestions.innerHTML = quizOptions;
-//      questionChoice.innerHTML = quizChoices; 
-
-//      var userChoice = questionChoice.querySelectorAll(".buttons");
-//      for(let i = 0; i < questionChoice.length; i++) {
-//          questionChoice[i].setAttribute("onclick", "selected(this)")
-//      }
-
-// }
+function clearChoice(element) {
+    element.classList.remove("true");
+    element.classList.remove("false");
+}
 
 var time = document.querySelector(".timer");
 var timeCount;
@@ -144,85 +154,35 @@ function countDown() {
             setTimeout(countDown,1000);
             }
 }
-// need to change function to show name input option
-function showResults() {
-    var h3 = document.querySelector(".end-quiz");
-    var h2 = document.querySelector(".quiz-section");
-    if (h2) {
-    if (h2.style.display === "none") {
-        h2.style.display = "block";
-        h3.style.display = "none";
-    }
-    else {
-        h2.style.display = "none";
-        h3.style.display = "block";
-    }
-  }
-}
 
 
-
-//grabbing the question (which will also lead to getting the next question )
-function grabbing () {
-    var questionAtTime = codingQuestion[currentLocation];
-
-    //render the current question at that time title
-    var questionTitle = document.getElementById("title")
-    questionTitle.textContent = questionAtTime.question
-
-    // double check to make sure there is not a question currently in the area
-    theChoices.innerHTML = "";
-
-    // loop through the choices in each questin (when rendered) and dispaly on the page
-    questionAtTime.options.forEach(function(option, i)
-    {
-        var radioButtons = document.createElement("button");
-        radioButtons.setAttribute("class", "option");
-        radioButtons.setAttribute("value", option)
-
-        // functinality to your radiobuttons
-        radioButtons.textContent= i + 1 + " ." + option;
-        // 1. Option1 
-        // 2. Option2
-
-        // attach event
-        radioButtons.onclick = clickButton;
-
-
-        // display ME
-        theChoices.appendChild(radioButtons)
-    })
-}
-
-
-// clicking the questions method will tell the code what to do after the user has clicked an answer 
-function clickButton () {
-    // comparing and contrasting the selected answer withthe coded answer 
-    if (this.value !== codingQuestion[currentLocation].answers){
-            // take away 
-        timeLimit -= 15;
-        if(timeLimit < 0 ){
-            timeLimit = 0
-        }
-            // display new time
-var timerTime = document.getElementById("timer")
-;
-timerTime.textContent = timeLimit;
-            // go to next questin 
-            currentLocation ++;
+// // clicking the questions method will tell the code what to do after the user has clicked an answer 
+// function clickButton () {
+//     // comparing and contrasting the selected answer withthe coded answer 
+//     if (this.value !== codingQuestion[currentLocation].options){
+//             // take away 
+//         timeLimit -= 15;
+//         if(timeLimit < 0 ){
+//             timeLimit = 0
+//         }
+//             // display new time
+// var timerTime = document.getElementById("timer")
+// ;
+// timerTime.textContent = timeLimit;
+//             // go to next questin 
+//             currentLocation ++;
 
            
-    }
-     // assure there are questions remaining if not end the game
-     if( currentLocation === codingQuestion.length){
-        // end game
-        endGame();
-    }else {
-        grabbing();
-    }
-}
+//     }
+//      // assure there are questions remaining if not end the game
+//      if( currentLocation === codingQuestion.length){
+//         // end game
+//         endGame();
+//     }else {
+//         grabbing();
+//     }
+// }
 
-// quiz end will execute different reason for ending the game
 function endGame () {
     // clearTimer to equal 0 
 
@@ -239,6 +199,6 @@ function endGame () {
     page.setAttribute("class", "quiz-section")
 }
 
-// // function/button for score board + store data/answers
-//  var starbtn = document.getElementById("btn");
-//  startbtn.onclick = grabbing;
+// function/button for score board + store data/answers
+ var starbtn = document.getElementById("btn");
+ startbtn.onclick = grabbing;
